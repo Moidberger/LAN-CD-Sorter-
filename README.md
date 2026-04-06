@@ -1,4 +1,4 @@
-# 💿 CD Sorter — LAN Edition
+# CD Sorter — LAN Edition
 
 Photograph your CDs on your phone, see them sorted alphabetically on your desktop — live.
 
@@ -38,7 +38,7 @@ python server.py
 You'll see:
 ```
 ══════════════════════════════════════════
-  💿  CD Sorter LAN Server
+      CD Sorter LAN Server
 ══════════════════════════════════════════
   Dashboard  →  http://192.168.x.x:5000
   Phone      →  http://192.168.x.x:5000/mobile
