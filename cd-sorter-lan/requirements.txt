@@ -1,4 +1,0 @@
-flask>=3.0
-flask-cors>=4.0
-flask-sock>=0.7
-anthropic>=0.25
