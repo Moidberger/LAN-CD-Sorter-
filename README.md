@@ -1,4 +1,4 @@
-# 💿 CD Sorter — LAN Edition
+#  CD Sorter — LAN Edition
 
 Photograph your CD collection with your phone, watch them appear sorted on your desktop in real time — genre-tagged via MusicBrainz, powered by Claude Vision.
 
