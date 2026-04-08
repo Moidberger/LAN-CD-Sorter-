@@ -9,7 +9,7 @@ echo  ==============================================
 echo.
 
 REM ── Check Python ──────────────────────────────
-echo [1/5] Checking Python...
+echo [1/6] Checking Python...
 python --version >nul 2>&1
 if errorlevel 1 (
     py --version >nul 2>&1
@@ -30,7 +30,7 @@ for /f "tokens=*" %%i in ('!PYTHON! --version') do echo  Found: %%i
 
 REM ── Check Node ────────────────────────────────
 echo.
-echo [2/5] Checking Node.js...
+echo [2/6] Checking Node.js...
 node --version >nul 2>&1
 if errorlevel 1 (
     echo.
@@ -44,7 +44,7 @@ for /f "tokens=*" %%i in ('node --version') do echo  Found: Node %%i
 
 REM ── API Key ───────────────────────────────────
 echo.
-echo [3/5] Anthropic API key...
+echo [3/6] Anthropic API key...
 if defined ANTHROPIC_API_KEY (
     echo  Found in environment — using existing key.
 ) else (
@@ -63,10 +63,19 @@ if defined ANTHROPIC_API_KEY (
     echo  Name: ANTHROPIC_API_KEY   Value: !ANTHROPIC_API_KEY!
 )
 
+REM ── Virtual Environment ───────────────────────
+echo.
+echo [4/6] Setting up Python Virtual Environment...
+if not exist venv\ (
+    echo  Creating a new virtual environment...
+    !PYTHON! -m venv venv
+)
+call venv\Scripts\activate.bat
+
 REM ── Python deps ───────────────────────────────
 echo.
-echo [4/5] Installing Python dependencies...
-!PYTHON! -m pip install flask flask-cors flask-sock anthropic --quiet --disable-pip-version-check
+echo [5/6] Installing Python dependencies...
+python -m pip install flask flask-cors flask-sock anthropic --quiet --disable-pip-version-check
 if errorlevel 1 (
     echo.
     echo  ERROR: pip install failed. Try running as Administrator.
@@ -77,7 +86,7 @@ echo  Done.
 
 REM ── Node deps + build ─────────────────────────
 echo.
-echo [5/5] Installing Node dependencies and building dashboard...
+echo [6/6] Installing Node dependencies and building dashboard...
 
 if not exist node_modules (
     echo  Running npm install...
@@ -113,6 +122,6 @@ echo  Press Ctrl+C to stop the server.
 echo.
 
 set ANTHROPIC_API_KEY=!ANTHROPIC_API_KEY!
-!PYTHON! server.py
+python server.py
 
 pause
